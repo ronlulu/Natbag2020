@@ -93,28 +93,30 @@ public class Main {
 			}
 			case 6: {
 				int chs1;
+				boolean ArrivelQ = true;
 				System.out.println("1. Search by Country ");
-				System.out.println("2. Search by Company");
-				System.out.println("3. Search by Flight Number");
+				System.out.println("2. Search by Company ");
+				System.out.println("3. Search by Flight Number ");
 				System.out.println("Enter your choise:");
 				
 				do {
 					chs1 = scan.nextInt();
 					switch(chs1) {
 					case 1: {
-						System.out.println("Please write the orign airport name:");
-						String countryName = scan.nextLine();
-					//	airPort.searchByCountry(countryName);
+						System.out.println("Please write the orign country:");
+						String countryName = scan.next();
+						airPort.searchByCountry(countryName,ArrivelQ);
+						break;
 					}
 					case 2: {
 						System.out.println("Please write the Company name:");
-						String companyName = scan.nextLine();
-					//	airPort.searchByCompany(companyName);
+						String companyName = scan.next();
+					//	airPort.searchByCompany(companyName,ArrivelQ);
 					}
 					case 3: {
 						System.out.println("Please write the required Flight Number:");
-						String countryName = scan.nextLine();
-					//	airPort.searchByFlightNumber(countryName);
+						String countryName = scan.next();
+					//	airPort.searchByFlightNumber(countryName,ArrivelQ);
 					}
 						
 					}

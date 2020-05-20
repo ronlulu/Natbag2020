@@ -122,4 +122,33 @@ public class Airport {
 			scan.nextLine();
 		}
 	}
+
+	public void searchByCountry(String countryName, boolean arrivelQ) {
+		if(arrivelQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfArrivels; i++) {
+				if (arrivels[i].getCountryOrigen().equalsIgnoreCase(countryName)) {
+					resultsCount++;
+					System.out.println(arrivels[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else if (!arrivelQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfTakeoff; i++) {
+				if (takeOff[i].getCountryOrigen().equalsIgnoreCase(countryName)) {
+					resultsCount++;
+					System.out.println(takeOff[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else {
+			System.out.println("system is Empty");
+		}
+		
+	}
 }

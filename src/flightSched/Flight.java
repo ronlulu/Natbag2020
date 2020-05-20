@@ -18,8 +18,7 @@ public class Flight {
 	private String cityDest;
 	private String countryDest;
 	 
-	
-	
+
 	public Flight(String carrierName, String dest, String orign,String carrierCode ,int fltNum, LocalDateTime takeOff, double flightTime ,String cityOrigen , String countryOrigen , String cityDest , String countryDest) {
 		this.carrierName = carrierName;
 		this.airPortDest = dest;
@@ -60,6 +59,15 @@ public class Flight {
 	public void setOrign(String orign) {
 		this.airPortOrigen = orign;
 	}
+	
+	public String getCountryOrigen() {
+		return countryOrigen;
+	}
+
+	public String getCountryDest() {
+		return countryDest;
+	}
+
 
 	@Override
 	public String toString() {
