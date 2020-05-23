@@ -10,7 +10,7 @@ public class Flight {
 	private String airPortDest ;
 	private String airPortOrigen ; 
 	private int fltNum;
-	private LocalDateTime takeOff;
+	private LocalDateTime takeOffDateTime;
 	private double flightTime;
 	private String carrierCode;
 	private String countryOrigen;
@@ -25,7 +25,7 @@ public class Flight {
 		this.airPortOrigen = orign;
 		this.carrierCode = carrierCode;
 		this.fltNum = fltNum;
-		this.takeOff = takeOff;
+		this.takeOffDateTime = takeOff;
 		this.flightTime = flightTime;
 		this.cityDest = cityDest;
 		this.cityOrigen = cityOrigen ; 
@@ -34,13 +34,13 @@ public class Flight {
 	}
 
 	public LocalDateTime getTakeOff() {
-		return takeOff;
+		return takeOffDateTime;
 	}
 	
 	public String FormatTime() {
 	    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-	    String formattedDate = takeOff.format(myFormatObj);
+	    String formattedDate = takeOffDateTime.format(myFormatObj);
 		return formattedDate;
 	}
 
@@ -69,6 +69,18 @@ public class Flight {
 	}
 
 
+	public int getFltNum() {
+		return fltNum;
+	}
+
+	public void setFltNum(int fltNum) {
+		this.fltNum = fltNum;
+	}
+
+	public String getCarrierName() {
+		return carrierName;
+	}
+
 	@Override
 	public String toString() {
 		
@@ -92,11 +104,11 @@ public class Flight {
 	}
 
 	private void saveDate(PrintWriter printer) {
-		printer.println(takeOff.getYear());
-		printer.println(takeOff.getMonthValue());
-		printer.println(takeOff.getDayOfMonth());
-		printer.println(takeOff.getHour());
-		printer.println(takeOff.getMinute());
+		printer.println(takeOffDateTime.getYear());
+		printer.println(takeOffDateTime.getMonthValue());
+		printer.println(takeOffDateTime.getDayOfMonth());
+		printer.println(takeOffDateTime.getHour());
+		printer.println(takeOffDateTime.getMinute());
 	}
 	
 

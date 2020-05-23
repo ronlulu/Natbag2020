@@ -3,6 +3,7 @@ package flightSched;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -123,8 +124,8 @@ public class Airport {
 		}
 	}
 
-	public void searchByCountry(String countryName, boolean arrivelQ) {
-		if(arrivelQ) {
+	public void searchByCountry(String countryName, boolean arrivalQ) {
+		if(arrivalQ) {
 			int resultsCount=0;
 			for (int i = 0; i < numOfArrivels; i++) {
 				if (arrivels[i].getCountryOrigen().equalsIgnoreCase(countryName)) {
@@ -135,7 +136,7 @@ public class Airport {
 			}
 			System.out.println("the system found " + resultsCount + " results.");
 		}
-		else if (!arrivelQ) {
+		else if (!arrivalQ) {
 			int resultsCount=0;
 			for (int i = 0; i < numOfTakeoff; i++) {
 				if (takeOff[i].getCountryOrigen().equalsIgnoreCase(countryName)) {
@@ -150,5 +151,94 @@ public class Airport {
 			System.out.println("system is Empty");
 		}
 		
+	}
+
+	public void searchByCompany(String companyName, boolean arrivalQ) {
+		if(arrivalQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfArrivels; i++) {
+				if (arrivels[i].getCarrierName().equalsIgnoreCase(companyName)) {
+					resultsCount++;
+					System.out.println(arrivels[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else if (!arrivalQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfTakeoff; i++) {
+				if (takeOff[i].getCarrierName().equalsIgnoreCase(companyName)) {
+					resultsCount++;
+					System.out.println(takeOff[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else {
+			System.out.println("system is Empty");
+		}	
+		System.out.println();
+	}
+
+	public void searchByFlightNumber(int flightNumber, boolean arrivalQ) {
+		if(arrivalQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfArrivels; i++) {
+				if (arrivels[i].getFltNum()==flightNumber) {
+					resultsCount++;
+					System.out.println(arrivels[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else if (!arrivalQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfTakeoff; i++) {
+				if (takeOff[i].getFltNum()==flightNumber) {
+					resultsCount++;
+					System.out.println(takeOff[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else {
+			System.out.println("system is Empty");
+		}	
+		System.out.println();
+	}
+
+	public void searchByFlightDate(LocalDate date, boolean arrivalQ) {
+		if(arrivalQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfArrivels; i++) {
+				LocalDate tempDate = arrivels[i].getTakeOff().toLocalDate();
+				if (tempDate==date) {
+					resultsCount++;
+					System.out.println(arrivels[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else if (!arrivalQ) {
+			int resultsCount=0;
+			for (int i = 0; i < numOfTakeoff; i++) {
+				LocalDate tempDate = arrivels[i].getTakeOff().toLocalDate();
+				if (tempDate==date) {
+					resultsCount++;
+					System.out.println(takeOff[i]);
+				}
+				
+			}
+			System.out.println("the system found " + resultsCount + " results.");
+		}
+		else {
+			System.out.println("system is Empty");
+		}
+		System.out.println();
 	}
 }

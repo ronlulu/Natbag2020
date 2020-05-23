@@ -2,6 +2,7 @@ package flightSched;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Locale;
@@ -18,10 +19,10 @@ public class Main {
 			choice = allChoices(scan);
 			switch (choice) {
 			case 1:
-				String carrierName , carrierCode , dest , orign ;
-				int fltNum , year , month , dayOfMonth , hour , minute  ;
+				String carrierName, carrierCode, dest, orign;
+				int fltNum, year, month, dayOfMonth, hour, minute;
 				double flightTime;
-				LocalDateTime takeOff ;
+				LocalDateTime takeOff;
 				System.out.println("add carrier name ");
 				carrierName = scan.next();
 				System.out.println("add air port destanation ");
@@ -43,7 +44,7 @@ public class Main {
 				System.out.println("enter the date : ");
 				System.out.println("year ? : ");
 				year = scan.nextInt();
-				System.out.println( "month ?");
+				System.out.println("month ?");
 				month = scan.nextInt();
 				System.out.println("day ? ");
 				dayOfMonth = scan.nextInt();
@@ -51,18 +52,15 @@ public class Main {
 				hour = scan.nextInt();
 				System.out.println("minute ?");
 				minute = scan.nextInt();
-				
-				
-				
-				
+
 				takeOff = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
 				System.out.println("how long the flight ? ");
 				flightTime = scan.nextDouble();
-				Flight newFlight = new Flight(carrierName, dest, orign, carrierCode, fltNum, takeOff, flightTime , cityOrigen ,countryOrigen ,cityDest , countryDest);
+				Flight newFlight = new Flight(carrierName, dest, orign, carrierCode, fltNum, takeOff, flightTime,
+						cityOrigen, countryOrigen, cityDest, countryDest);
 				if (airPort.addFlight(newFlight)) {
 					System.out.println("flight added ");
-				}
-				else {
+				} else {
 					System.out.println("failed to add ");
 				}
 				break;
@@ -94,33 +92,82 @@ public class Main {
 			case 6: {
 				int chs1;
 				boolean ArrivelQ = true;
-				System.out.println("1. Search by Country ");
-				System.out.println("2. Search by Company ");
-				System.out.println("3. Search by Flight Number ");
-				System.out.println("Enter your choise:");
-				
 				do {
-					chs1 = scan.nextInt();
-					switch(chs1) {
+					chs1 = SearchChoices(scan);
+					switch (chs1) {
 					case 1: {
 						System.out.println("Please write the orign country:");
 						String countryName = scan.next();
-						airPort.searchByCountry(countryName,ArrivelQ);
+						airPort.searchByCountry(countryName, ArrivelQ);
 						break;
 					}
 					case 2: {
 						System.out.println("Please write the Company name:");
 						String companyName = scan.next();
-					//	airPort.searchByCompany(companyName,ArrivelQ);
+						airPort.searchByCompany(companyName, ArrivelQ);
+						break;
 					}
 					case 3: {
 						System.out.println("Please write the required Flight Number:");
+						int flightNumber = scan.nextInt();
+						airPort.searchByFlightNumber(flightNumber, ArrivelQ);
+						break;
+					}
+					case 4: {
+						System.out.println("Enter Year: ");
+						int searchYear = scan.nextInt();
+						System.out.println("Enter Month: ");
+						int searchMonth = scan.nextInt();
+						System.out.println("Enter Day: ");
+						int searchDay = scan.nextInt();
+						LocalDate date = LocalDate.of(searchYear, searchMonth, searchDay);
+						airPort.searchByFlightDate(date, ArrivelQ);
+						break;
+					}
+
+					}
+				} while (chs1 != 0);
+				break;
+			}
+
+			case 7: {
+				int chs1;
+				boolean ArrivelQ = false;
+				do {
+					chs1 = SearchChoices(scan);
+					switch (chs1) {
+					case 1: {
+						System.out.println("Please write the orign country:");
 						String countryName = scan.next();
-					//	airPort.searchByFlightNumber(countryName,ArrivelQ);
+						airPort.searchByCountry(countryName, ArrivelQ);
+						break;
 					}
-						
+					case 2: {
+						System.out.println("Please write the Company name:");
+						String companyName = scan.next();
+						airPort.searchByCompany(companyName, ArrivelQ);
+						break;
 					}
-				}while (chs1!=0);
+					case 3: {
+						System.out.println("Please write the required Flight Number:");
+						int flightNumber = scan.nextInt();
+						airPort.searchByFlightNumber(flightNumber, ArrivelQ);
+						break;
+					}
+					case 4: {
+						System.out.println("Enter Year: ");
+						int searchYear = scan.nextInt();
+						System.out.println("Enter Month: ");
+						int searchMonth = scan.nextInt();
+						System.out.println("Enter Day: ");
+						int searchDay = scan.nextInt();
+						LocalDate date = LocalDate.of(searchYear, searchMonth, searchDay);
+						airPort.searchByFlightDate(date, ArrivelQ);
+						break;
+					}
+
+					}
+				} while (chs1 != 0);
 			}
 			default:
 				break;
@@ -140,6 +187,17 @@ public class Main {
 		System.out.println("7. ---> Search for Departing Flight");
 		System.out.println("8. ---> Search for future Flight");
 		System.out.println("0. ---> to Exit");
+		return scan.nextInt();
+	}
+	
+	public static int SearchChoices(Scanner scan) {
+		
+		System.out.println("1. Search by Country ");
+		System.out.println("2. Search by Company ");
+		System.out.println("3. Search by Flight Number ");
+		System.out.println("4. Search by Date");
+		System.out.println("0. Go Back To Main Menu.");
+		System.out.println("Enter your choise:");
 		return scan.nextInt();
 	}
 
