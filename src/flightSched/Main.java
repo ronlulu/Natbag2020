@@ -21,7 +21,7 @@ public class Main {
 			case 1:
 				String carrierName, carrierCode, dest, orign;
 				int fltNum, year, month, dayOfMonth, hour, minute;
-				double flightTime;
+				double timeInTheAir;
 				LocalDateTime takeOff;
 				System.out.println("add carrier name ");
 				carrierName = scan.next();
@@ -55,8 +55,8 @@ public class Main {
 
 				takeOff = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
 				System.out.println("how long the flight ? ");
-				flightTime = scan.nextDouble();
-				Flight newFlight = new Flight(carrierName, dest, orign, carrierCode, fltNum, takeOff, flightTime,
+				timeInTheAir = scan.nextDouble();
+				Flight newFlight = new Flight(carrierName, dest, orign, carrierCode, fltNum, takeOff, timeInTheAir,
 						cityOrigen, countryOrigen, cityDest, countryDest);
 				if (airPort.addFlight(newFlight)) {
 					System.out.println("flight added ");
@@ -169,6 +169,15 @@ public class Main {
 					}
 				} while (chs1 != 0);
 			}
+			case 8 : {
+				
+				
+				break;
+			}
+			case 9 : {
+			System.out.println(airPort.getFutureFlightsSched());
+				break;
+			}
 			default:
 				break;
 			}
@@ -186,6 +195,7 @@ public class Main {
 		System.out.println("6. ---> Search for Arrivel Flight");
 		System.out.println("7. ---> Search for Departing Flight");
 		System.out.println("8. ---> Search for future Flight");
+		System.out.println("9. ---> get all future flights");
 		System.out.println("0. ---> to Exit");
 		return scan.nextInt();
 	}
@@ -202,7 +212,8 @@ public class Main {
 	}
 
 	public static void hardCoded(Airport airport) {
-		LocalDateTime time1 = LocalDateTime.of(2020, 05, 20, 00, 45);
+		LocalDateTime time1 = LocalDateTime.of(2020, 8, 25, 9, 51);
+		//Flight test  = new Flight(carrierName, dest, orign, carrierCode, fltNum, takeOff, flightTime, cityOrigen, countryOrigen, cityDest, countryDest)
 		Flight flight1 = new Flight("ELAL", "JFK", "TLV", "LY", 001, time1, 9, "TEL AVIV" ,"ISRAEL" ,"NEW YORK" , "USA");
 		LocalDateTime time2 = LocalDateTime.of(2020, 05, 20, 10, 10);
 		Flight flight2 = new Flight("ELAL", "LHR", "TLV", "LY", 315, time2, 9, "TEL AVIV" ,"ISRAEL" ,"LONDON" , "ENGLAND");

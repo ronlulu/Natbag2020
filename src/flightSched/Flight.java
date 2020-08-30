@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Flight {
+	public enum FlightType { arrivale , departure }
+	
+	private FlightType flightType;
 	private String carrierName;
 	private String airPortDest ;
 	private String airPortOrigen ; 
@@ -31,6 +34,28 @@ public class Flight {
 		this.cityOrigen = cityOrigen ; 
 		this.countryDest = countryDest ; 
 		this.countryOrigen = countryOrigen ;
+		
+		if(dest.equals("TLV")) {
+			flightType = FlightType.arrivale;
+		}
+		else {
+			flightType = FlightType.departure;
+		}
+	}
+
+	public Flight(Flight flight) {
+		this.carrierName = flight.carrierName;
+		this.airPortDest = flight.airPortDest;
+		this.airPortOrigen = flight.airPortOrigen;
+		this.carrierCode = flight.carrierCode;
+		this.fltNum = flight.fltNum;
+		this.takeOffDateTime = flight.takeOffDateTime;
+		this.flightTime = flight.flightTime;
+		this.cityDest = flight.cityDest;
+		this.cityOrigen = flight.cityOrigen ; 
+		this.countryDest = flight.countryDest ; 
+		this.countryOrigen = flight.countryOrigen ;
+		this.flightType = flight.flightType;
 	}
 
 	public LocalDateTime getTakeOff() {
@@ -110,6 +135,28 @@ public class Flight {
 		printer.println(takeOffDateTime.getHour());
 		printer.println(takeOffDateTime.getMinute());
 	}
+
+	public boolean isTodaysFlight(LocalDateTime time) {
+	LocalDateTime now = LocalDateTime.now();
+	if(now.getYear() == time.getYear()) {
+		if(now.getDayOfYear() == time.getDayOfYear() || now.getDayOfYear() + 1 == time.getDayOfYear() || now.getDayOfYear() - 1 == time.getDayOfYear() ) {
+			return true;
+		}
+	}
+		return false;
+	}
+
+	public FlightType getFlightType() {
+		
+		return flightType;
+	}
+
+	public LocalDateTime getTimeOfFlight() {
+		
+		return takeOffDateTime;
+	}
+
+	
 	
 
 
