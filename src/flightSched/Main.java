@@ -213,10 +213,13 @@ public class Main {
 
 	public static void hardCoded(Airport airport) {
 		LocalDateTime time1 = LocalDateTime.of(2020, 8, 25, 9, 51);
-		//Flight test  = new Flight(carrierName, dest, orign, carrierCode, fltNum, takeOff, flightTime, cityOrigen, countryOrigen, cityDest, countryDest)
-		Flight flight1 = new Flight("ELAL", "JFK", "TLV", "LY", 001, time1, 9, "TEL AVIV" ,"ISRAEL" ,"NEW YORK" , "USA");
 		LocalDateTime time2 = LocalDateTime.of(2020, 05, 20, 10, 10);
-		Flight flight2 = new Flight("ELAL", "LHR", "TLV", "LY", 315, time2, 9, "TEL AVIV" ,"ISRAEL" ,"LONDON" , "ENGLAND");
+
+		Flight flight1 = new Flight("ELAL", "JFK", "TLV", "LY", 001, time2, 9, "TEL AVIV" ,"ISRAEL" ,"NEW YORK" , "USA");
+		Flight flight2 = new Flight("ELAL",  "TLV","LHR", "LY", 315, time2, 9, "TEL AVIV" ,"ISRAEL" ,"LONDON" , "ENGLAND");
+		Flight flight3 = new Flight("ELAL", "JFK", "TLV", "LY", 001, time1, 9, "TEL AVIV" ,"ISRAEL" ,"NEW YORK" , "USA");
+		
+		airport.addFlight(flight3);
 		airport.addFlight(flight2);
 		airport.addFlight(flight1);
 		

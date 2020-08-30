@@ -25,8 +25,6 @@ public class Airport {
 		numOfFutureFlights = 0;
 	}
 
-	// TODO finish serching method - add the serching methods to future flights
-	// TODO write a JUint test class
 
 	public boolean addFlight(Flight newFlight) {
 		LocalDateTime now = LocalDateTime.now();
